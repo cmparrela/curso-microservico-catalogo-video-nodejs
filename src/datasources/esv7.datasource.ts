@@ -1,23 +1,7 @@
 import { inject, lifeCycleObserver, LifeCycleObserver } from '@loopback/core';
 import { juggler } from '@loopback/repository';
+import config  from './esv7.datasource.config';
 
-const config = {
-  name: 'esv7',
-  connector: 'esv6',
-  index: 'catalog',
-  apiVersion: '7',
-  defaultSize: '',
-  configuration: {
-    'node': process.env.ELATIC_SEARCH_HOST,
-    "requestTimeout": process.env.ELATIC_SEARCH_REQUEST_TIMEOUT,
-    "pingTimeout": process.env.ELATIC_SEARCH_PING_TIMEOUT
-  }
-};
-
-// Observe application's life cycle to disconnect the datasource when
-// application is stopped. This allows the application to be shut down
-// gracefully. The `stop()` method is inherited from `juggler.DataSource`.
-// Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
 @lifeCycleObserver('datasource')
 export class Esv7DataSource extends juggler.DataSource
   implements LifeCycleObserver {
@@ -25,9 +9,7 @@ export class Esv7DataSource extends juggler.DataSource
   static readonly defaultConfig = config;
 
   constructor(
-    @inject('datasources.config.esv7', { optional: true })
-    dsConfig: object = config,
   ) {
-    super(dsConfig);
+    super(config);
   }
 }
