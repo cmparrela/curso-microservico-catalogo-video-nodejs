@@ -63,7 +63,9 @@ export class PingController {
     await this.categoryRepo.create({
       id: '3',
       name: 'minha categoria',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       create_at: new Date(),
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       update_at: new Date()
     });
     return this.categoryRepo.find();
