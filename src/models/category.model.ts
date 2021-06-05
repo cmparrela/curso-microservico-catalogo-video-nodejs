@@ -17,9 +17,22 @@ export class Category extends Entity {
   name: string;
 
   @property({
-    type: 'string',
+    type: 'boolean',
+    required: false,
   })
-  description?: string;
+  is_active: boolean = true;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  create_at: Date;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  update_at: Date;
 
   // Define well-known properties here
 

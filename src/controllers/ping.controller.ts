@@ -60,7 +60,12 @@ export class PingController {
 
   @get('/categories')
   async index() {
-    await this.categoryRepo.create({id: "3", name: 'minha categoria'});
+    await this.categoryRepo.create({
+      id: '3',
+      name: 'minha categoria',
+      create_at: new Date(),
+      update_at: new Date()
+    });
     return this.categoryRepo.find();
   }
 }
